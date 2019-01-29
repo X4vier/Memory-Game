@@ -10,6 +10,7 @@ Notable features include:
   - CSS animations (for card flips and background color changes)
 
 The icons used in this maching game are taken from *Font Awesome*  - [Website here](https://origin.fontawesome.com/)
+
 The background image was made by *Tori Pantha*, downloaded from *Subtle Patterns* [Website here](https://www.toptal.com/designers/subtlepatterns/geometry-2/)
 
-[![Screenshot](img/screenshot.png)]
+![Screenshot](img/screenshot.png)
