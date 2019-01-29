@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Xavier's Memory Game</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="css/custom-select.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/animation.css">
+  
+</head>
+
+<body>
+  <header>
+    <div class="cards-remaining info">
+      <p class="label">Pairs Remaining:</p>
+      <p class="data" id="cards-data">xxx</p>
+    </div>
+    <div class="time info">
+      <p class="label">Time:</p>
+      <p class="data" id="time-data">xxx</p>
+    </div>
+  </header>
+  <ul class="deck"></ul>
+  <div id="options">
+    <button id="restart-button" class="ui" onclick="restartGame()">Restart</button>
+    <div id="mainselection" class="ui">
+      <select id="pairs-picker"></select>
+    </div>
+  </div>
+
+</body>
+<script src="js/config.js"></script>
+<script src="js/card.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/game.js"></script>
+<script src="js/mouse.js"></script>
+<script src="js/animate.js"></script>
+
+</html>

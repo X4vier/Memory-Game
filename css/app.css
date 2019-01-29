@@ -1,0 +1,138 @@
+:root {
+    --num-columns: 3;
+    --num-rows: 5;
+    --bw : 0.85; /* body width */
+}
+
+html {
+    font-family: 'Ubuntu Mono', monospace;
+    background-image: url("../img/geometry2.png")
+}
+
+.deck {
+    width: 95%;
+    overflow: auto;
+    background: linear-gradient(160deg, #ffbaf6 0%, #82bdcf 100%);
+    border-radius: 10px;
+    display: flex;
+    padding: 2.5%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style-type: none;
+    box-sizing: inherit;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: calc( 40vw / var(--num-columns));
+    background-color: #333333;
+    color: white;
+    border-radius: 10px;
+    margin: calc( 0.95 * 100vw * var(--bw) * 0.09 / var(--num-columns));
+    width: calc( 0.95 * 100vw * var(--bw) * (1 - 2 * 0.09)/ var(--num-columns));
+    height: calc( 0.95 * 100vw * var(--bw) * (1 - 2 * 0.09)/ var(--num-columns));
+    /* box-shadow: 5px 5px 10px 0 rgba(46, 61, 73, 0.5); */
+    
+}
+
+#options {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+    justify-content: center;
+}
+
+#restart-button {
+    border: none;
+    margin-right: 5%;
+    padding: 15px;
+}
+
+.ui {
+    width: 45%;
+    font-size: 5vw;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(115, 255, 119); /* Green */
+    font-family: 'Ubuntu mono', monospace;
+}
+
+.face-down {
+    background-color: black
+}
+
+.matched {
+    background-color: green;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 3.5vw;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.info {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.data {
+    font-weight: bold;
+    font-size: 5vw;
+    padding-left: 10px;
+    margin: 0;
+}
+
+body {
+    width: calc(100% * 0.85 * 1.05);
+    margin-left: auto;
+    margin-right: auto;
+}
+ 
+
+@media screen and (min-width: 1050px) {
+    body {
+      width: calc(var(--bw)*1050px * 1.05);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .card {
+        font-size: calc(0.4*1050px / var(--num-columns));
+        margin: calc( 0.95 * 1050px * var(--bw) * 0.09 / var(--num-columns));
+        width: calc( 0.95 * 1050px * var(--bw) * (1 - 2 * 0.09)/ var(--num-columns));
+        height: calc( 0.95 *  1050px * var(--bw) * (1 - 2 * 0.09)/ var(--num-columns));
+    }
+
+    .info {
+        font-size: calc(1050px*0.04);
+    }
+
+    .data {
+        font-size: calc(1050px*0.05);
+    }
+
+    .ui {
+        font-size: calc(0.05*1050px);
+    }
+
+    #mainselection select {
+        font-size: calc(0.05*1050px);
+    }
+}
+

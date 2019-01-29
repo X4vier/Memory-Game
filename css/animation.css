@@ -1,0 +1,83 @@
+:root {
+    --flip-duration: 1000ms;
+}
+
+.flipping1 {
+    animation-name: flip1;
+    animation-duration: var(--flip-duration);
+}
+
+@keyframes flip1 {
+    from {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+    to {
+        -webkit-transform: rotateY(90deg);
+        transform: rotateY(90deg);
+    }
+}
+
+.flipping2 {
+    animation-name: flip2;
+    animation-duration: var(--flip-duration);
+}
+
+@keyframes flip2 {
+    from {
+        -webkit-transform: rotateY(-90deg);
+        transform: rotateY(-90deg);
+    }
+    to {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }
+}
+
+.matched {
+    animation-name: bounce;
+    animation-duration: 500ms;
+}
+
+@keyframes bounce {
+    0% {
+        background-color:  #333333;
+    }
+
+    50% {
+      animation-timing-function: ease-in;
+      transform: scale(1.1) translate(0, -0.5em);
+      -webkit-transform: scale(1.1) translate(0, -0.5em);
+      -ms-transform: scale(1.1) translate(0, -0.5em);
+    }
+
+    100% {
+        background-color: green;
+    }
+}
+
+.incorrect {
+    animation-name: shake;
+    animation-duration: 500ms;
+    animation-iteration-count: 1
+}
+
+@keyframes shake {
+
+    25% {
+        /* animation-timing-function: ease-in; */
+        transform: translate(-0.4em, -0);
+        -webkit-transform: translate(-0.4em, -0);
+        -ms-transform: translate(-0.4em, -0);
+        background-color: red;
+      }
+
+    75% {
+    animation-timing-function: ease-in;
+    transform: translate(0.4em, -0);
+    -webkit-transform: translate(0.4em, -0);
+    -ms-transform: translate(0.4em, -0);
+    background-color: red;
+    }
+
+}
