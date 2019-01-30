@@ -12,43 +12,8 @@ function showModal() {
     document.getElementById("final-time").innerText = seconds2string(parseInt(game.time / 10));
     document.getElementById("mistake-counter").innerText = game.wrongMoves;
 
-    // Calculate how many stars the user has earned (from 0 to 3)
-    let stars = 3;
-    let wrongMoves = game.wrongMoves;
-    let initialPairs = game.initialPairs;
-    let time = game.time;
 
-    // Peanalise making too many wrong moves
-    if (wrongMoves >= initialPairs) {
-        stars -= 1;
-        console.log("wrong move penalty 1");
-    }
-    if (wrongMoves >= initialPairs * 2) {
-        stars -= 1;
-        console.log("wrong move penalty 2");
-    }
-    if (wrongMoves >= initialPairs * 3) {
-        stars -= 1;
-        console.log("wrong move penalty 3");
-    }
-
-    // Peanalise taking too much time
-    if (time / 10 >= initialPairs * 3.5) {
-        stars -= 1;
-        console.log("time move penalty 1");
-    }
-    if (time / 10 >= initialPairs * 7) {
-        stars -= 1;
-        console.log("time move penalty 2");
-    }
-    if (time / 10 >= initialPairs * 12) {
-        stars -= 1;
-        console.log("time move penalty 3");
-    }
-
-    if (stars < 0) stars = 0;
-
-    console.log("Stars is " + stars);
+    let stars = game.stars;
 
     let starChildNodes = document.getElementsByClassName("stars")[0].childNodes;
     let starNodes = [];

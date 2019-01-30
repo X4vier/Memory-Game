@@ -25,6 +25,7 @@ class gameObject { // Object which encapsulates all of the relevant game data (a
         this.faceUpCards = 0; // how many un-matched cards are currently face-up
         this.deleted = false; // is this object ready to be deleted? (used to dissable the clock, after which garbage collection happens automatically)
         this.wrongMoves = 0; // number of wrong moves the player has made
+        this.stars = 3; // number of stars the player currently has
     }
 
     testMatch() { // Check whether the two cards the player clicked are a match
@@ -54,8 +55,48 @@ class gameObject { // Object which encapsulates all of the relevant game data (a
         var self = this;
         if (self.deleted) return; // terminate clock loop if game is done.        
         this.time += 1; // clock tick
-        document.querySelector("#time-data").innerHTML = seconds2string(parseInt(this.time / 10)); // update clock UI
-        document.querySelector("#cards-data").innerHTML = this.pairsRemaining; // update "pairs remaining" UI
+
+        let newStars = 3;
+        let wrongMoves = game.wrongMoves;
+        let initialPairs = game.initialPairs;
+        let time = game.time;
+        // Peanalise making too many wrong moves
+        if (wrongMoves >= initialPairs) {
+            newStars -= 1;
+        }
+        if (wrongMoves >= initialPairs * 2) {
+            newStars -= 1;
+        }
+        if (wrongMoves >= initialPairs * 3) {
+            newStars -= 1;
+        }
+
+        // Peanalise taking too much time
+        if (time / 10 >= initialPairs * 3.5) {
+            newStars -= 1;
+        }
+        if (time / 10 >= initialPairs * 7) {
+            newStars -= 1;
+        }
+        if (time / 10 >= initialPairs * 12) {
+            newStars -= 1;
+        }
+
+        if (newStars < 0) newStars = 0;
+
+        game.stars = newStars;
+
+
+
+        document.querySelector("#time-data").innerHTML = seconds2string(parseInt(self.time / 10)); // update clock UI
+        document.querySelector("#cards-data").innerHTML = self.pairsRemaining; // update "pairs remaining" UI
+        document.querySelector("#moves-data").innerText = self.wrongMoves; // update "wrong moves" UI
+
+        let starsHTML = "";
+        for (let i = 0; i < self.stars; i++) {
+            starsHTML += "<i class='fas fa-star'></i>"
+        }
+        document.querySelector("#stars-data").innerHTML = starsHTML; // update "wrong moves" UI
 
         // Call the clock again in 0.1 seconds
         function reClock() {
@@ -83,5 +124,5 @@ function restartGame() {
 
 
 // Start a new game when page loaded for first time
-var numCards = null;
+
 restartGame();

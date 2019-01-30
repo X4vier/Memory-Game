@@ -14,3 +14,7 @@ The icons used in this maching game are taken from *Font Awesome*  - [Website he
 The background image was made by *Tori Pantha*, downloaded from *Subtle Patterns* [Website here](https://www.toptal.com/designers/subtlepatterns/geometry-2/)
 
 ![Screenshot](img/screenshot.png)
+
+## Dependancies:
+
+This project does not use any additional libraries. Caution: some of the CSS animations may not necessarily work on all browsers. 
