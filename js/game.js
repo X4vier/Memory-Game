@@ -82,7 +82,7 @@ class gameObject { // Object which encapsulates all of the relevant game data (a
             newStars -= 1;
         }
 
-        if (newStars < 0) newStars = 0;
+        if (newStars < 1) newStars = 1;
 
         game.stars = newStars;
 
