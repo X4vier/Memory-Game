@@ -1,9 +1,7 @@
-flipTime = 200;
+// Xavier O'Rourke, January 2019
 
-numCards = 8;
-// numColumns = 4;
-
-let allSymbols = [
+flipTime = 200; // How many miliseconds it takes to half-flip a card
+let allSymbols = [ // The names of the FontAwesome symbols which might appear on cards (origin.fontawesome.com/)
     "cat",
     "dog",
     "dove",
@@ -19,11 +17,13 @@ let allSymbols = [
     "biohazard",
     "bug",
     "building",
-    "cannabis",
+    "book",
     "car-side",
     "carrot",
     "chess-knight",
+    "chess-queen",
     "child",
+    "code",
     "cogs",
     "cookie-bite",
     "cubes",
@@ -54,7 +54,6 @@ let allSymbols = [
     "tree",
     "university",
     "cloud-moon",
-    
-
-
 ]
+
+var numCards = null;

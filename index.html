@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="css/custom-select.css">
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/animation.css">
-  
 </head>
 
 <body>
@@ -34,13 +33,31 @@
       <select id="pairs-picker"></select>
     </div>
   </div>
-
 </body>
+
+<div id="win-screen" class="modal">
+  <div class="modal-content">
+    <div style="position: relative; width: 0; height: 0">
+      <span class="close">&times;</span>
+    </div>
+    <p>Congratulations! You matched all the cards!</p>
+    <span class="stars">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star missing"></i>
+    </span>
+    <p>Wrong moves: <span id="mistake-counter"></span></p>
+    <p>Final time: <span id="final-time"></span></p>
+  </div>
+
+</div>
+
 <script src="js/config.js"></script>
 <script src="js/card.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/game.js"></script>
 <script src="js/mouse.js"></script>
 <script src="js/animate.js"></script>
+<script src="js/modal.js"></script>
 
 </html>

@@ -103,7 +103,55 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
- 
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 15vh; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    text-align: center;
+    font-size: 6vw;
+}
+
+.modal-content {
+    background: linear-gradient(120deg, rgb(137, 255, 137), rgb(164, 244, 255));
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 15px;
+}
+
+.stars {
+    color: rgb(255, 217, 0);
+    font-size: 10vw;
+    text-shadow:  2vw    0 10vw white,
+                  -2vw   0 10vw white,
+                  0    2vw 10vw white,
+                  0   -2vw 10vw white;
+}   
+
+.missing {
+    color: rgb(100, 100, 100);
+    text-shadow: 0 0 10vw rgb(143, 143, 143);
+}
+
+.close {
+    font-size: 10vw;
+    cursor: pointer;
+    position: absolute;
+    /* margin-top: -4%;
+    margin-left: 35%; */
+    top: -3vw;
+    left: 74vw;
+}
 
 @media screen and (min-width: 1050px) {
     body {
@@ -133,6 +181,32 @@ body {
 
     #mainselection select {
         font-size: calc(0.05*1050px);
+    }
+    
+    .modal {
+        font-size: calc(0.06*1050px);
+    }
+
+    .modal-content {
+        width: calc(0.8*1050px);
+    }
+
+    .stars {
+        font-size: calc(0.1 * 1050px);
+        text-shadow:  calc(0.02*1050px)  0                  10vw white,
+                      calc(-0.02*1050px) 0                  10vw white,
+                      0                  calc(0.02*1050px)  10vw white,
+                      0                  calc(-0.02*1050px) 10vw white;
+    }   
+    
+    .missing {
+        text-shadow: 0 0 calc(0.1*1050px) rgb(0, 0, 0);
+    }
+    
+    .close {
+        font-size: calc(0.1*1050px);
+        top: calc(-0.03*1050px);
+        left: calc(0.74*1050px);
     }
 }
 

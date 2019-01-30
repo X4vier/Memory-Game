@@ -1,99 +1,79 @@
-// let game = {
-//     matches: 0,
-//     pairsRemaining: numCards/2,
-//     faceUpCards: 0,
-//     firstCard: null,
-//     secondCard: null,
-//     testMatch: function() {
-//         if (game.firstCard.symbol == game.secondCard.symbol) {
-//             game.firstCard.element.classList.add("matched");
-//             game.secondCard.element.classList.add("matched");
-//             game.faceUpCards = 0;
-//             game.pairsRemaining -= 1;
-//         } else {
-//             game.firstCard.element.classList.add("incorrect");
-//             game.secondCard.element.classList.add("incorrect");
-//             setTimeout( function() {
-//                 game.firstCard.flip();
-//                 game.secondCard.flip();
-//                 game.faceUpCards = 0;
-//             }, 500)
-            
-//         }
-//     },
-//     time: -1,
-//     clock: function() {
-//         game.time += 1;
-//         document.querySelector("#time-data").innerHTML = seconds2string(game.time);
-//         document.querySelector("#cards-data").innerHTML = game.pairsRemaining;
-//         setTimeout(game.clock, 1000);
-//     }
+// Xavier O'Rourke, January 2019
 
-// }
+// This file contains the game logic
 
-function seconds2string(seconds) {
+function seconds2string(seconds) { // Integer -> String, e.g. seconds2string(185) == "02:05"
     let s = seconds % 60;
     let m = (seconds - s) / 60;
     s = s.toString();
     m = m.toString();
-    while (s.length < 2) s = "0"+s;
-    while (m.length < 2) m = "0"+m;
-    return m+":"+s;
+    while (s.length < 2) s = "0" + s;
+    while (m.length < 2) m = "0" + m;
+    return m + ":" + s;
 }
 
 
 
-class gameObject {
+class gameObject { // Object which encapsulates all of the relevant game data (aside from which cards are where)
 
     constructor() {
-        this.matches = 0;
-        this.pairsRemaining = numCards/2;
-        this.firstCard = null;
-        this.secondCard = null;
-        this.time = -1;
-        this.faceUpCards= 0;
-        this.deleted = false;
+        this.initialPairs = numCards / 2;
+        this.pairsRemaining = numCards / 2;
+        this.firstCard = null; // First card we clicked when guessing a pair
+        this.secondCard = null; // Second card we clicked when guessing a pair
+        this.time = -1; // miliseconds
+        this.faceUpCards = 0; // how many un-matched cards are currently face-up
+        this.deleted = false; // is this object ready to be deleted? (used to dissable the clock, after which garbage collection happens automatically)
+        this.wrongMoves = 0; // number of wrong moves the player has made
     }
 
-    testMatch() {
+    testMatch() { // Check whether the two cards the player clicked are a match
         var self = this;
-        if (this.firstCard.symbol == this.secondCard.symbol) {
-            this.firstCard.element.classList.add("matched");
-            this.secondCard.element.classList.add("matched");
-            this.faceUpCards = 0;
-            this.pairsRemaining -= 1;
-        } else {
-            this.firstCard.element.classList.add("incorrect");
-            this.secondCard.element.classList.add("incorrect");
-            setTimeout(function() {
+        if (self.firstCard.symbol == self.secondCard.symbol) { // Is a match
+            self.firstCard.element.classList.add("matched");
+            self.secondCard.element.classList.add("matched");
+            self.faceUpCards = 0;
+            self.pairsRemaining -= 1;
+            if (self.pairsRemaining == 0) { // End the game if there are no pairs remaining
+                setTimeout(showModal, 500);
+            }
+        } else { // The two cards we clicked weren't a match
+            self.firstCard.element.classList.add("incorrect");
+            self.secondCard.element.classList.add("incorrect");
+            self.wrongMoves += 1;
+            setTimeout(function () { // flip the cards back over
                 self.firstCard.flip();
                 self.secondCard.flip();
                 self.faceUpCards = 0;
             }, 500)
-            
+
         }
     }
 
-    clock() {
+    clock() { // Keep counting up the time and updating the UI
         var self = this;
-        this.time += 1;
-        document.querySelector("#time-data").innerHTML = seconds2string(this.time);
-        document.querySelector("#cards-data").innerHTML = this.pairsRemaining;
-        function reClock(){
+        if (self.deleted) return; // terminate clock loop if game is done.        
+        this.time += 1; // clock tick
+        document.querySelector("#time-data").innerHTML = seconds2string(parseInt(this.time / 10)); // update clock UI
+        document.querySelector("#cards-data").innerHTML = this.pairsRemaining; // update "pairs remaining" UI
+
+        // Call the clock again in 0.1 seconds
+        function reClock() {
             self.clock();
         }
-        if (self.pairsRemaining > 0 && !self.deleted) setTimeout(reClock, 1000);
+        if (self.pairsRemaining > 0) setTimeout(reClock, 100);
     }
 
 }
 
 function restartGame() {
-    if (game) {
-        game.deleted = true;
-        delete game;
+    // Remove the old game
+    if (typeof game != "undefined") {
+        game.deleted = true; // flag for garbage collection
+        delete game; // free up the variable name
     }
 
-
+    // Work out how many pairs the user wants to play with next
     let selectMenu = document.getElementById("pairs-picker")
     numCards = 2 * selectMenu.options[selectMenu.selectedIndex].value;
     game = new gameObject();
@@ -101,5 +81,7 @@ function restartGame() {
     game.clock();
 }
 
-game = new gameObject();
+
+// Start a new game when page loaded for first time
+var numCards = null;
 restartGame();
